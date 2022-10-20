@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
 
 app.get("/api/details", (request, response) => {
   //We need to get the details from the database (Real World)
-  response.send([1, 2, 3]); //o/p : [1,2,3]
+  response.send([1, 2, 3, 4]); //o/p : [1,2,3]
 });
 
 //Next we need to listen the port
