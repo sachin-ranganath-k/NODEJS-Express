@@ -20,7 +20,8 @@ app.get("/api/details", (request, response) => {
 });
 
 //Next we need to listen the port
-app.listen(3000, () => {
+const port = process.env.PORT || 3000; //if set, we use process.env.PORT else 3000
+app.listen(port, () => {
   //Here callback executes once the app starts listening on the given port
-  console.log("Listening..");
+  console.log(`Listening on port ${port} ..`);
 });
