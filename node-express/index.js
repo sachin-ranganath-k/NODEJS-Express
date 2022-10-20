@@ -16,7 +16,20 @@ app.get("/", (request, response) => {
 
 app.get("/api/details", (request, response) => {
   //We need to get the details from the database (Real World)
-  response.send([1, 2, 3, 4]); //o/p : [1,2,3]
+  response.send([1, 2, 3, 4]); //o/p : [1,2,3,4]
+});
+
+//To get a single perticular detail
+app.get("/api/details/:detailId/:year/:month", (request, response) => {
+  //We need to get the details from the database (Real World)
+
+  response.send(request.params);
+
+  // /api/details/:detailId
+  response.send(request.params.detailId);
+
+  //response.send is to send data to client
+  response.send([1, 2, 3, 4]);
 });
 
 //Next we need to listen the port
