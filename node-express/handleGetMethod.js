@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express2 = require("express");
 const app = express2();
 
@@ -23,11 +22,13 @@ const personDetails = [
   },
 ];
 
-app.get("/api/details", (request, response) => {
+//Handle all data
+app.get("/api/personDetails", (request, response) => {
   //We need to get the details from the database (Real World)
-  response.send([1, 2, 3, 4]); //o/p : [1,2,3,4]
+  response.send(personDetails); //Returns all personDetails Data
 });
 
+//Handle data based on id
 app.get("/api/details/:personId", (request, response) => {
   //find() finds the data based on given criteria and returns true/false
 
@@ -36,6 +37,7 @@ app.get("/api/details/:personId", (request, response) => {
     (c) => c.personId === parseInt(request.params.personId)
   );
   if (!details) {
+    //404 error can be seen in the chrome network tab
     response.status(404).send("Details not found for the given ID");
   } else {
     response.send(details);
