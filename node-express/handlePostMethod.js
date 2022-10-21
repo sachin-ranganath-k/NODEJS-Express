@@ -1,3 +1,4 @@
+const Joi = require("joi"); //Returns  class
 const express2 = require("express");
 const app = express2();
 
@@ -48,6 +49,21 @@ app.get("/api/details/:personId", (request, response) => {
 
 //Handle Post Request
 app.post("/api/details", (request, response) => {
+  const schema = Joi.object({
+    //For newer version
+    //   const schema = {   //For older version
+    personName: Joi.string().min(3).required(),
+  });
+
+  const result = schema.validate(request.body); //Returns an abject
+  //   const result = Joi.validate(request.body, schema); //Returns an abject
+  console.log(result);
+
+  if (!request.body.personName || request.body.personName.length < 3) {
+    //400 Bad Request
+    response.status(400).send("Name is required with min 3 characters");
+    return; //After showing error, should not execute next statements
+  }
   const personDetail = {
     personId: personDetails.length + 1, //Actually it will be assigned db
     personName: request.body.personName, // .personName is a property in request body (assume)
