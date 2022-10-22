@@ -1,7 +1,7 @@
 const Joi = require("joi"); //Returns  class
 const express2 = require("express");
-const app = express2();
 
+const app = express2();
 app.use(express2.json()); //Returns piece of middleware
 
 const port = process.env.PORT || 3000; //if set, we use process.env.PORT else 3000
@@ -52,16 +52,15 @@ app.post("/api/details", (request, response) => {
   const schema = Joi.object({
     //For newer version
     //   const schema = {   //For older version
-    personName: Joi.string().min(3).required(),
+    personName: Joi.string().min(5).required(),
   });
 
   const result = schema.validate(request.body); //Returns an abject
-  //   const result = Joi.validate(request.body, schema); //Returns an abject
+  //   //   const result = Joi.validate(request.body, schema); //Returns an abject
   console.log(result);
 
-  if (!request.body.personName || request.body.personName.length < 3) {
-    //400 Bad Request
-    response.status(400).send("Name is required with min 3 characters");
+  if (result.error) {
+    response.status(400).send(result.error.details[0].message);
     return; //After showing error, should not execute next statements
   }
   const personDetail = {
