@@ -1,0 +1,2 @@
+This is a static middleware file.
+To run localhost:3000/staticMiddlewareFile.txt
