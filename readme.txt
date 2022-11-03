@@ -17,5 +17,7 @@ npm i joi
 -- app.use(express.urlencoded()) : Parses incoming requests with URL enoded payloads
 -- app.use(express.static()) : Used to serve static files
 
+--- Third party middlewares are also there. Refer expressJS documentation
+
 
   
